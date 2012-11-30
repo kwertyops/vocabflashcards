@@ -1,23 +1,141 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="2.0" toolsVersion="2519" systemVersion="12A206j" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" initialViewController="2">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="2.0" toolsVersion="2840" systemVersion="12C3006" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" initialViewController="2">
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="1856"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="1926"/>
     </dependencies>
     <scenes>
-        <!--class Prefix:identifier View Controller-->
+        <!--Deck View Controller-->
         <scene sceneID="5">
             <objects>
-                <viewController id="2" customClass="ViewController" sceneMemberID="viewController">
+                <viewController id="2" customClass="DeckViewController" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="3">
-                        <rect key="frame" x="0.0" y="20" width="320" height="460"/>
+                        <rect key="frame" x="0.0" y="64" width="320" height="504"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                     </view>
+                    <navigationItem key="navigationItem" id="5Yk-Y0-4Tq">
+                        <barButtonItem key="leftBarButtonItem" systemItem="search" id="046-ak-sHg">
+                            <connections>
+                                <action selector="revealSidebar:" destination="2" id="GQF-ri-0qp"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
+                    <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" prompted="NO"/>
+                    <connections>
+                        <segue destination="h51-2t-CYw" kind="push" identifier="SearchResultsSegue" id="N8g-Tf-GcG"/>
+                        <segue destination="4sC-PH-hzt" kind="push" identifier="newDeckSegue" id="OCe-Le-K7P"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="4" sceneMemberID="firstResponder"/>
             </objects>
         </scene>
+        <!--New Deck View Controller-->
+        <scene sceneID="mfC-c6-pVt">
+            <objects>
+                <viewController storyboardIdentifier="NewDeckViewController" id="4sC-PH-hzt" customClass="NewDeckViewController" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="lzr-xi-rbx">
+                        <rect key="frame" x="0.0" y="64" width="320" height="504"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                        <subviews>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="grouped" separatorStyle="singleLineEtched" rowHeight="44" sectionHeaderHeight="10" sectionFooterHeight="10" translatesAutoresizingMaskIntoConstraints="NO" id="eZE-Su-fdN">
+                                <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
+                            </tableView>
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Deck title..." textAlignment="center" minimumFontSize="17" clearButtonMode="whileEditing" translatesAutoresizingMaskIntoConstraints="NO" id="4uS-10-mm9">
+                                <fontDescription key="fontDescription" type="system" pointSize="20"/>
+                                <textInputTraits key="textInputTraits"/>
+                            </textField>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="OJm-p7-GTX">
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="28" id="Hhg-7N-Znu"/>
+                                    <constraint firstAttribute="width" constant="73" id="Yfq-6V-OLl"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="boldSystem" size="button"/>
+                                <state key="normal" title="Create">
+                                    <color key="titleColor" red="0.19607843137254902" green="0.30980392156862746" blue="0.52156862745098043" alpha="1" colorSpace="calibratedRGB"/>
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <state key="highlighted">
+                                    <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <action selector="createPressed:" destination="4sC-PH-hzt" eventType="touchUpInside" id="TLK-cM-NCp"/>
+                                </connections>
+                            </button>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="4uS-10-mm9" firstAttribute="top" secondItem="lzr-xi-rbx" secondAttribute="top" constant="184" id="1EF-qK-zjb"/>
+                            <constraint firstItem="eZE-Su-fdN" firstAttribute="bottom" secondItem="lzr-xi-rbx" secondAttribute="bottom" type="default" id="1n9-lG-QgO"/>
+                            <constraint firstItem="eZE-Su-fdN" firstAttribute="top" secondItem="lzr-xi-rbx" secondAttribute="top" type="default" id="2On-Rx-skl"/>
+                            <constraint firstItem="eZE-Su-fdN" firstAttribute="trailing" secondItem="lzr-xi-rbx" secondAttribute="trailing" type="default" id="FAL-2W-jkw"/>
+                            <constraint firstItem="eZE-Su-fdN" firstAttribute="leading" secondItem="lzr-xi-rbx" secondAttribute="leading" type="default" id="LKE-lm-Atk"/>
+                            <constraint firstItem="OJm-p7-GTX" firstAttribute="top" secondItem="4uS-10-mm9" secondAttribute="bottom" constant="8" symbolic="YES" type="default" id="NCv-fV-jLh"/>
+                            <constraint firstAttribute="trailing" secondItem="4uS-10-mm9" secondAttribute="trailing" constant="20" symbolic="YES" type="default" id="QcD-l9-AKK"/>
+                            <constraint firstItem="4uS-10-mm9" firstAttribute="leading" secondItem="lzr-xi-rbx" secondAttribute="leading" constant="20" symbolic="YES" type="default" id="qbq-hh-27v"/>
+                            <constraint firstItem="OJm-p7-GTX" firstAttribute="centerX" secondItem="4uS-10-mm9" secondAttribute="centerX" type="default" id="xH8-7m-c14"/>
+                        </constraints>
+                    </view>
+                    <navigationItem key="navigationItem" id="FQG-7Q-1nm"/>
+                    <connections>
+                        <outlet property="textField" destination="4uS-10-mm9" id="S5x-cE-aft"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Chm-Oo-Urj" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="854" y="-483"/>
+        </scene>
+        <!--Search Results View Controller-->
+        <scene sceneID="396-07-sHr">
+            <objects>
+                <viewController storyboardIdentifier="SearchResultsViewController" id="h51-2t-CYw" customClass="SearchResultsViewController" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="Mw0-ad-lVk">
+                        <rect key="frame" x="0.0" y="64" width="320" height="504"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                        <subviews>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="grouped" separatorStyle="singleLineEtched" rowHeight="44" sectionHeaderHeight="10" sectionFooterHeight="10" translatesAutoresizingMaskIntoConstraints="NO" id="j0k-U7-fqV">
+                                <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
+                                <connections>
+                                    <outlet property="dataSource" destination="h51-2t-CYw" id="qNw-kw-pmh"/>
+                                    <outlet property="delegate" destination="h51-2t-CYw" id="G14-H9-z1F"/>
+                                </connections>
+                            </tableView>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="j0k-U7-fqV" firstAttribute="bottom" secondItem="Mw0-ad-lVk" secondAttribute="bottom" type="default" id="VFK-Y1-TB1"/>
+                            <constraint firstItem="j0k-U7-fqV" firstAttribute="trailing" secondItem="Mw0-ad-lVk" secondAttribute="trailing" type="default" id="agc-CT-fDJ"/>
+                            <constraint firstItem="j0k-U7-fqV" firstAttribute="leading" secondItem="Mw0-ad-lVk" secondAttribute="leading" type="default" id="v1V-p4-XJO"/>
+                            <constraint firstItem="j0k-U7-fqV" firstAttribute="top" secondItem="Mw0-ad-lVk" secondAttribute="top" type="default" id="w2a-SX-rVJ"/>
+                        </constraints>
+                    </view>
+                    <navigationItem key="navigationItem" id="h8P-zZ-AcO"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="zyz-9F-1f7" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="854" y="201"/>
+        </scene>
     </scenes>
+    <classes>
+        <class className="DeckViewController" superclassName="UIViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/DeckViewController.h"/>
+            <relationships>
+                <relationship kind="action" name="revealSidebar:"/>
+            </relationships>
+        </class>
+        <class className="NSLayoutConstraint" superclassName="NSObject">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/NSLayoutConstraint.h"/>
+        </class>
+        <class className="NewDeckViewController" superclassName="UIViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/NewDeckViewController.h"/>
+            <relationships>
+                <relationship kind="action" name="createPressed:"/>
+                <relationship kind="outlet" name="textField" candidateClass="UITextField"/>
+            </relationships>
+        </class>
+        <class className="SearchResultsViewController" superclassName="UIViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/SearchResultsViewController.h"/>
+        </class>
+    </classes>
     <simulatedMetricsContainer key="defaultSimulatedMetrics">
         <simulatedStatusBarMetrics key="statusBar"/>
         <simulatedOrientationMetrics key="orientation"/>

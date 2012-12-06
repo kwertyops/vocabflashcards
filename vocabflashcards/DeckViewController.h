@@ -8,13 +8,16 @@
 
 #import <UIKit/UIKit.h>
 #import "FMDatabase.h"
+#import "DeckManager.h"
 
 typedef void (^RevealBlock)();
 
 @interface DeckViewController : UIViewController
 
 @property (strong, nonatomic) RevealBlock revealBlock;
+@property (strong, nonatomic) DeckManager *deckManager;
 
 - (IBAction)revealSidebar:(id)sender;
+- (void)reloadTitle;
 
 @end

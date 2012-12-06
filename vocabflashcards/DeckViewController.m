@@ -8,7 +8,8 @@
 
 #import "DeckViewController.h"
 #import "MBProgressHUD.h"
-#import "DBManager.h"
+#import "DeckManager.h"
+#import "AppDelegate.h"
 
 @interface DeckViewController ()
 
@@ -17,10 +18,24 @@
 @implementation DeckViewController
 
 @synthesize revealBlock = _revealBlock;
+@synthesize deckManager = _deckManager;
 
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    
+    AppDelegate *appDelegate = [[UIApplication sharedApplication] delegate];
+    
+    _deckManager = [appDelegate deckManager];
+    
+    if([[_deckManager currentDeck] objectForKey:@"title"] != nil)
+    {
+        self.title = [[_deckManager currentDeck] objectForKey:@"title"];
+    }
+    else
+    {
+        self.title = @"No Deck";
+    }
     
 }
 
@@ -28,6 +43,18 @@
 {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
+}
+
+- (void)reloadTitle
+{
+    if([[_deckManager currentDeck] objectForKey:@"title"] != nil)
+    {
+        self.title = [[_deckManager currentDeck] objectForKey:@"title"];
+    }
+    else
+    {
+        self.title = @"No Deck";
+    }
 }
 
 - (void)setRevealBlock:(RevealBlock)revealBlock {

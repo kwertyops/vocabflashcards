@@ -7,6 +7,7 @@
 //
 
 #import "SearchResultsViewController.h"
+#import "NewCardViewController.h"
 
 @interface SearchResultsViewController ()
 
@@ -20,6 +21,8 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    
+    self.title = [[_resultsList objectAtIndex:0] objectForKey:@"name"];
     
     _resultsByType = [[NSMutableArray alloc] init];
     
@@ -101,7 +104,11 @@
 
 - (void)tableView: (UITableView *) tableView didSelectRowAtIndexPath: (NSIndexPath *) indexPath {
     
+    NewCardViewController *ncvc = [[self storyboard] instantiateViewControllerWithIdentifier:@"NewCardViewController"];
     
+    ncvc.wordFromDict = [[[_resultsByType objectAtIndex:indexPath.section] objectForKey:@"words"] objectAtIndex:indexPath.row];
+    
+    [[self navigationController] pushViewController:ncvc animated:YES];
     
 }
 

@@ -21,6 +21,7 @@
 -(void)removeDeck:(NSDictionary *)deck;
 
 -(NSMutableDictionary *)getCurrentDeck;
+-(NSInteger)indexForCurrentDeck;
 -(void)setCurrentDeck:(NSMutableDictionary *)currentDeck;
 
 @end

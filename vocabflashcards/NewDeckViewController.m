@@ -20,9 +20,7 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    
-    _textField.frame = CGRectMake(20, 45, 280, 42);
-    
+            
     // Uncomment the following line to preserve selection between presentations.
     // self.clearsSelectionOnViewWillAppear = NO;
  
@@ -44,6 +42,15 @@
     [appDelegate.menuController reinit];
     [self.navigationController popViewControllerAnimated:YES];
 
+}
+
+- (BOOL)textView:(UITextView *)textView shouldChangeTextInRange:(NSRange)range replacementText:(NSString *)text {
+    if([text isEqualToString:@"\n"]){
+        [textView resignFirstResponder];
+        return NO;
+    }else{
+        return YES;
+    }
 }
 
 @end

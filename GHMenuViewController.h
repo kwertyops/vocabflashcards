@@ -7,6 +7,7 @@
 //
 
 #import <Foundation/Foundation.h>
+#import "DeckManager.h"
 @class GHRevealViewController;
 
 @interface GHMenuViewController : UIViewController <UITableViewDataSource, UITableViewDelegate> {
@@ -18,6 +19,8 @@
 	NSArray *_controllers;
 	NSArray *_cellInfos;
 }
+
+@property (nonatomic, strong) DeckManager *deckManager;
 
 - (void) reinit;
 

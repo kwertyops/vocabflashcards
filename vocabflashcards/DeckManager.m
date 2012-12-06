@@ -30,6 +30,8 @@
     {
         NSLog(@"Creating decks plist.");
         [self newDeck:@"Default Deck"];
+        _currentDeck = [_allDecks objectAtIndex:0];
+        [[_currentDeck objectForKey:@"entries"] addObject:@{@"name":@"Test",@"description":@"test description",@"type":@"noun"}];
         [_allDecks writeToFile:_filePath atomically: TRUE];
     }
     else
@@ -37,6 +39,29 @@
         NSLog(@"Loading decks plist.");
         _allDecks = [NSMutableArray arrayWithContentsOfFile:_filePath];
     }
+}
+
+-(void)writeFile
+{
+    
+}
+
+-(NSInteger)indexForCurrentDeck
+{
+    NSInteger i = 0;
+    
+    for(NSMutableDictionary *deck in _allDecks)
+    {
+        if(_currentDeck == deck)
+        {
+            return i;
+        }
+        else
+        {
+            i++;
+        }
+    }
+    return -1;
 }
 
 -(void)newDeck:(NSString *)title

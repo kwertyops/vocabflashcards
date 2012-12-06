@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		331D13DB167072010051A051 /* InsertCardViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 331D13DA167072010051A051 /* InsertCardViewController.m */; };
 		338548F816690A0200880741 /* SearchResultsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 338548F716690A0200880741 /* SearchResultsViewController.m */; };
 		33854913166914E100880741 /* PrettyCustomViewTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 33854901166914E100880741 /* PrettyCustomViewTableViewCell.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 		33854914166914E100880741 /* PrettyGridTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 33854903166914E100880741 /* PrettyGridTableViewCell.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
@@ -45,6 +46,7 @@
 		33AC1C01166906590097E2D4 /* GHMenuViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 33AC1BF7166906470097E2D4 /* GHMenuViewController.m */; };
 		33AC1C02166906590097E2D4 /* GHMenuCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 33AC1BF9166906470097E2D4 /* GHMenuCell.m */; };
 		33AC1C03166906590097E2D4 /* GHAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 33AC1BFB166906470097E2D4 /* GHAppDelegate.m */; };
+		33B20AAD1670929100C913CF /* EditDeckViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 33B20AAC1670929100C913CF /* EditDeckViewController.m */; };
 		33C5C81516688E3300626611 /* FMDatabase.m in Sources */ = {isa = PBXBuildFile; fileRef = 33C5C80B16688E3300626611 /* FMDatabase.m */; };
 		33C5C81616688E3300626611 /* FMDatabaseAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = 33C5C80D16688E3300626611 /* FMDatabaseAdditions.m */; };
 		33C5C81716688E3300626611 /* FMDatabasePool.m in Sources */ = {isa = PBXBuildFile; fileRef = 33C5C80F16688E3300626611 /* FMDatabasePool.m */; };
@@ -53,9 +55,12 @@
 		33C5C822166897ED00626611 /* MBProgressHUD.m in Sources */ = {isa = PBXBuildFile; fileRef = 33C5C81F166897BE00626611 /* MBProgressHUD.m */; };
 		33C5C82716689C0500626611 /* wiktionarydb2.sqlite in Resources */ = {isa = PBXBuildFile; fileRef = 33AA5D6516687CCE001F62E3 /* wiktionarydb2.sqlite */; };
 		33C5C84E1669054500626611 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 33C5C84D1669054500626611 /* QuartzCore.framework */; };
+		33D287F81670795900E54F29 /* NewCardViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 33D287F71670795900E54F29 /* NewCardViewController.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		331D13D9167072010051A051 /* InsertCardViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = InsertCardViewController.h; sourceTree = "<group>"; };
+		331D13DA167072010051A051 /* InsertCardViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = InsertCardViewController.m; sourceTree = "<group>"; };
 		338548F616690A0200880741 /* SearchResultsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SearchResultsViewController.h; sourceTree = "<group>"; };
 		338548F716690A0200880741 /* SearchResultsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SearchResultsViewController.m; sourceTree = "<group>"; };
 		33854900166914E100880741 /* PrettyCustomViewTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PrettyCustomViewTableViewCell.h; sourceTree = "<group>"; };
@@ -131,6 +136,8 @@
 		33AC1BFA166906470097E2D4 /* GHMenuCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = GHMenuCell.h; sourceTree = "<group>"; };
 		33AC1BFB166906470097E2D4 /* GHAppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = GHAppDelegate.m; sourceTree = "<group>"; };
 		33AC1BFC166906470097E2D4 /* GHAppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = GHAppDelegate.h; sourceTree = "<group>"; };
+		33B20AAB1670929100C913CF /* EditDeckViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EditDeckViewController.h; sourceTree = "<group>"; };
+		33B20AAC1670929100C913CF /* EditDeckViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EditDeckViewController.m; sourceTree = "<group>"; };
 		33C5C80A16688E3300626611 /* FMDatabase.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FMDatabase.h; sourceTree = "<group>"; };
 		33C5C80B16688E3300626611 /* FMDatabase.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FMDatabase.m; sourceTree = "<group>"; };
 		33C5C80C16688E3300626611 /* FMDatabaseAdditions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FMDatabaseAdditions.h; sourceTree = "<group>"; };
@@ -144,6 +151,8 @@
 		33C5C81F166897BE00626611 /* MBProgressHUD.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MBProgressHUD.m; sourceTree = "<group>"; };
 		33C5C820166897BE00626611 /* MBProgressHUD.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MBProgressHUD.h; sourceTree = "<group>"; };
 		33C5C84D1669054500626611 /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
+		33D287F61670795900E54F29 /* NewCardViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NewCardViewController.h; sourceTree = "<group>"; };
+		33D287F71670795900E54F29 /* NewCardViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NewCardViewController.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -252,6 +261,12 @@
 				338549341669559500880741 /* NewDeckViewController.h */,
 				338549351669559500880741 /* NewDeckViewController.m */,
 				33AA5D3D166879E4001F62E3 /* MainStoryboard_iPhone.storyboard */,
+				331D13D9167072010051A051 /* InsertCardViewController.h */,
+				331D13DA167072010051A051 /* InsertCardViewController.m */,
+				33D287F61670795900E54F29 /* NewCardViewController.h */,
+				33D287F71670795900E54F29 /* NewCardViewController.m */,
+				33B20AAB1670929100C913CF /* EditDeckViewController.h */,
+				33B20AAC1670929100C913CF /* EditDeckViewController.m */,
 			);
 			path = vocabflashcards;
 			sourceTree = "<group>";
@@ -447,6 +462,9 @@
 				3385491B166914E200880741 /* PrettyToolbar.m in Sources */,
 				3385492F1669510500880741 /* DeckManager.m in Sources */,
 				338549361669559600880741 /* NewDeckViewController.m in Sources */,
+				331D13DB167072010051A051 /* InsertCardViewController.m in Sources */,
+				33D287F81670795900E54F29 /* NewCardViewController.m in Sources */,
+				33B20AAD1670929100C913CF /* EditDeckViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

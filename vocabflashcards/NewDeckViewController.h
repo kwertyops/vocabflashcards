@@ -8,9 +8,9 @@
 
 #import <UIKit/UIKit.h>
 
-@interface NewDeckViewController : UIViewController
+@interface NewDeckViewController : UIViewController<UITextFieldDelegate>
 
-@property (weak, nonatomic) IBOutlet UITextField *textField;
+@property (weak, nonatomic) IBOutlet UITextView *textField;
 
 - (IBAction)createPressed:(id)sender;
 

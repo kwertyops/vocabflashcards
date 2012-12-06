@@ -20,6 +20,8 @@
 #pragma mark Implementation
 @implementation GHMenuViewController
 
+@synthesize deckManager = _deckManager;
+
 #pragma mark Memory Management
 - (id)initWithSidebarViewController:(GHRevealViewController *)sidebarVC 
 					  withSearchBar:(UISearchBar *)searchBar 
@@ -42,9 +44,9 @@
     
     AppDelegate *appDelegate = [[UIApplication sharedApplication] delegate];
     
-    DeckManager *deckManager = [appDelegate deckManager];
+    _deckManager = [appDelegate deckManager];
 
-    NSArray *allDecks = [deckManager allDecks];
+    NSArray *allDecks = [_deckManager allDecks];
     
     NSMutableArray *cellInfos = [[NSMutableArray alloc] init];
     
@@ -71,6 +73,9 @@
     
     [_menuTableView reloadData];
     
+    if([_deckManager indexForCurrentDeck] != -1)
+        [self selectRowAtIndexPath:[NSIndexPath indexPathForRow:[_deckManager indexForCurrentDeck] inSection:1] animated:NO scrollPosition:UITableViewScrollPositionTop];
+    
 }
 
 #pragma mark UIViewController
@@ -94,7 +99,8 @@
 - (void)viewWillAppear:(BOOL)animated {
 	self.view.frame = CGRectMake(0.0f, 0.0f,kGHRevealSidebarWidth, CGRectGetHeight(self.view.bounds));
 	[_searchBar sizeToFit];
-	[self selectRowAtIndexPath:[NSIndexPath indexPathForRow:0 inSection:0] animated:NO scrollPosition:UITableViewScrollPositionTop];
+    if([_deckManager indexForCurrentDeck] != -1)
+        [self selectRowAtIndexPath:[NSIndexPath indexPathForRow:[_deckManager indexForCurrentDeck] inSection:1] animated:NO scrollPosition:UITableViewScrollPositionTop];
 }
 
 - (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)orientation {
@@ -164,16 +170,26 @@
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
 
+    AppDelegate *appDelegate = [[UIApplication sharedApplication] delegate];
+
     if(indexPath.section == 0)
     {
-    AppDelegate *appDelegate = [[UIApplication sharedApplication] delegate];
-    
-    NewDeckViewController *dest = [[UIStoryboard storyboardWithName:@"MainStoryboard_iPhone" bundle:nil] instantiateViewControllerWithIdentifier:@"NewDeckViewController"];
+            
+        NewDeckViewController *dest = [[UIStoryboard storyboardWithName:@"MainStoryboard_iPhone" bundle:nil] instantiateViewControllerWithIdentifier:@"NewDeckViewController"];
+            
+        [appDelegate.deckView.navigationController pushViewController:dest animated:NO];
+            
+        [_sidebarVC toggleSidebar:NO duration:kGHRevealSidebarDefaultAnimationDuration];
         
-    [appDelegate.deckView.navigationController pushViewController:dest animated:NO];
+    }
+    if(indexPath.section == 1)
+    {
+        [[appDelegate deckManager] setCurrentDeck:[[[appDelegate deckManager] allDecks] objectAtIndex:indexPath.row]];
         
-    [_sidebarVC toggleSidebar:NO duration:kGHRevealSidebarDefaultAnimationDuration];
+        [(DeckViewController *)[(UINavigationController *)[_sidebarVC contentViewController] visibleViewController] reloadTitle];
         
+        [_sidebarVC toggleSidebar:NO duration:kGHRevealSidebarDefaultAnimationDuration];
+
     }
     
     
@@ -185,7 +201,6 @@
 	if (scrollPosition == UITableViewScrollPositionNone) {
 		[_menuTableView scrollToRowAtIndexPath:indexPath atScrollPosition:scrollPosition animated:animated];
 	}
-	_sidebarVC.contentViewController = _controllers[indexPath.section][indexPath.row];
 }
 
 @end

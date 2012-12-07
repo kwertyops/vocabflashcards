@@ -7,6 +7,7 @@
 
 #import "GHRevealViewController.h"
 #import <QuartzCore/QuartzCore.h>
+#import "AppDelegate.h"
 
 
 #pragma mark -
@@ -122,10 +123,42 @@ const CGFloat kGHRevealSidebarFlickVelocity = 1000.0f;
 
 #pragma mark UIViewController
 - (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)orientation {
-	return (orientation == UIInterfaceOrientationPortraitUpsideDown)
-		? (UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad)
-		: YES;
+    
+    AppDelegate *appDelegate = [[UIApplication sharedApplication] delegate];
+    
+    if(([(UINavigationController *)contentViewController visibleViewController] == [appDelegate deckView]) || (orientation == UIInterfaceOrientationPortrait) ||
+       (orientation == UIInterfaceOrientationPortraitUpsideDown))
+    {
+        if(!sidebarShowing)
+            return YES;
+        else
+            return NO;
+    }
+    else
+    {
+        return NO;
+    }
 }
+
+-(void)willRotateToInterfaceOrientation:(UIInterfaceOrientation)toInterfaceOrientation duration:(NSTimeInterval)duration
+{
+    if(toInterfaceOrientation == UIInterfaceOrientationLandscapeLeft || toInterfaceOrientation == UIInterfaceOrientationLandscapeRight)
+    {
+        [(UINavigationController *)contentViewController setNavigationBarHidden:YES];
+    }
+    if(toInterfaceOrientation == UIInterfaceOrientationPortrait || toInterfaceOrientation == UIInterfaceOrientationPortraitUpsideDown)
+    {
+        [(UINavigationController *)contentViewController setNavigationBarHidden:NO];
+    }
+}
+
+/*
+- (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation
+{
+    return (interfaceOrientation == UIInterfaceOrientationPortrait) ||
+    (interfaceOrientation == UIInterfaceOrientationPortraitUpsideDown);
+}
+ */
 
 #pragma mark Public Methods
 

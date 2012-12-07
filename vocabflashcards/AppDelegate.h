@@ -18,6 +18,8 @@
 @property (strong, nonatomic) DBManager *dbManager;
 @property (strong, nonatomic) DeckManager *deckManager;
 
+@property (nonatomic, strong) GHRevealViewController *revealController;
+
 @property (strong, nonatomic) DeckViewController *deckView;
 @property (strong, nonatomic) GHMenuViewController *menuController;
 

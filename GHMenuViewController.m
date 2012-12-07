@@ -186,7 +186,7 @@
     {
         [[appDelegate deckManager] setCurrentDeck:[[[appDelegate deckManager] allDecks] objectAtIndex:indexPath.row]];
         
-        [(DeckViewController *)[(UINavigationController *)[_sidebarVC contentViewController] visibleViewController] reloadTitle];
+        [(DeckViewController *)[(UINavigationController *)[_sidebarVC contentViewController] visibleViewController] reload];
         
         [_sidebarVC toggleSidebar:NO duration:kGHRevealSidebarDefaultAnimationDuration];
 

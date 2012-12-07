@@ -17,5 +17,6 @@
 @property (nonatomic) DeckManager *deckManager;
 
 - (IBAction)donePressed:(id)sender;
+- (IBAction)trashPressed:(id)sender;
 
 @end

@@ -79,6 +79,9 @@
 {
     [[[_allDecks objectAtIndex:indexPath.row] objectForKey:@"entries"] addObject:_cardToInsert];
     
+    AppDelegate *appDelegate = [[UIApplication sharedApplication] delegate];
+    [[appDelegate deckView] reload];
+    
     [[self navigationController] popToRootViewControllerAnimated:YES];
 }
 

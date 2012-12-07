@@ -22,7 +22,6 @@
 #pragma mark -
 #pragma mark Private Interface
 @interface AppDelegate () <GHSidebarSearchViewControllerDelegate>
-@property (nonatomic, strong) GHRevealViewController *revealController;
 @property (nonatomic, strong) GHSidebarSearchViewController *searchController;
 @end
 

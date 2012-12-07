@@ -17,7 +17,21 @@ typedef void (^RevealBlock)();
 @property (strong, nonatomic) RevealBlock revealBlock;
 @property (strong, nonatomic) DeckManager *deckManager;
 
+@property (strong, nonatomic) NSDictionary *currentCard;
+
+@property (weak, nonatomic) IBOutlet UIButton *mainButton;
+@property (weak, nonatomic) IBOutlet UIButton *checkButton;
+@property (weak, nonatomic) IBOutlet UIButton *xButton;
+@property (weak, nonatomic) IBOutlet UILabel *definitionLabel;
+@property (weak, nonatomic) IBOutlet UILabel *wordLabel;
+
+@property (nonatomic) BOOL flipped;
+
 - (IBAction)revealSidebar:(id)sender;
-- (void)reloadTitle;
+- (void)reload;
+
+- (IBAction)mainButtonPressed:(id)sender;
+- (IBAction)checkButtonPressed:(id)sender;
+- (IBAction)xButtonPressed:(id)sender;
 
 @end

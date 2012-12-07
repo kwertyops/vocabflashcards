@@ -19,6 +19,12 @@
 
 @synthesize revealBlock = _revealBlock;
 @synthesize deckManager = _deckManager;
+@synthesize flipped = _flipped;
+@synthesize mainButton = _mainButton;
+@synthesize checkButton = _checkButton;
+@synthesize xButton = _xButton;
+@synthesize wordLabel = _wordLabel;
+@synthesize definitionLabel = _definitionLabel;
 
 - (void)viewDidLoad
 {
@@ -34,7 +40,17 @@
     }
     else
     {
-        self.title = @"No Deck";
+        self.title = @"No Deck Selected";
+        _wordLabel.text = @"Powered by Wiktionary!";
+        _definitionLabel.text = @"Please forgive some broken or odd-looking definitions. We're parsing wikitext. :)";
+        _checkButton.enabled = NO;
+        _xButton.enabled = NO;
+        _mainButton.enabled = NO;
+        
+        _checkButton.alpha = 0;
+        _xButton.alpha = 0;
+        
+        _flipped = NO;
     }
     
 }
@@ -45,15 +61,191 @@
     // Dispose of any resources that can be recreated.
 }
 
-- (void)reloadTitle
+- (void)reload
 {
     if([[_deckManager currentDeck] objectForKey:@"title"] != nil)
     {
         self.title = [[_deckManager currentDeck] objectForKey:@"title"];
+        
+        _currentCard = [_deckManager nextCard];
+        
+        NSLog(@"Current card: %@", _currentCard);
+        
+        if(_currentCard != nil)
+        {
+            _wordLabel.text = [_currentCard objectForKey:@"name"];
+            _definitionLabel.text = [_currentCard objectForKey:@"description"];
+            
+            //Resize to text
+            CGRect labelRect = _definitionLabel.bounds;            
+            CGFloat fontSize = 30;
+            while (fontSize > 0.0)
+            {
+                CGSize size = [_definitionLabel.text sizeWithFont:[UIFont fontWithName:@"Verdana" size:fontSize] constrainedToSize:CGSizeMake(labelRect.size.width, 10000) lineBreakMode:UILineBreakModeWordWrap];
+                
+                if (size.height <= labelRect.size.height) break;
+                
+                fontSize -= 1.0;
+            }
+            
+            //set font size
+            _definitionLabel.font = [UIFont fontWithName:@"Verdana" size:fontSize];
+            
+             
+            _definitionLabel.alpha = 0;
+            _checkButton.enabled = NO;
+            _xButton.enabled = NO;
+            _mainButton.enabled = YES;
+            
+            _checkButton.alpha = 0;
+            _xButton.alpha = 0;
+            
+            _flipped = NO;
+        }
+        else
+        {
+            _wordLabel.text = @"No Cards in Deck";
+            _definitionLabel.text = @"Try adding some cards.";
+            _definitionLabel.alpha = 1;
+            _checkButton.enabled = NO;
+            _xButton.enabled = NO;
+            _mainButton.enabled = NO;
+            
+            _checkButton.alpha = 0;
+            _xButton.alpha = 0;
+            
+            _flipped = NO;
+        }
+        
     }
     else
     {
-        self.title = @"No Deck";
+        self.title = @"No Deck Selected";
+        _wordLabel.text = @"";
+        _definitionLabel.text = @"";
+        _checkButton.enabled = NO;
+        _xButton.enabled = NO;
+        _mainButton.enabled = NO;
+        
+        _checkButton.alpha = 0;
+        _xButton.alpha = 0;
+        
+        _flipped = NO;
+    }
+}
+
+- (IBAction)mainButtonPressed:(id)sender {
+    if(!_flipped)
+    {
+        
+        _definitionLabel.alpha = 1;
+        _mainButton.enabled = NO;
+        _checkButton.alpha = 1;
+        _checkButton.enabled = YES;
+        _xButton.alpha = 1;
+        _xButton.enabled = YES;
+        
+        _flipped = YES;
+    }
+}
+
+- (IBAction)checkButtonPressed:(id)sender {
+    _currentCard = [_deckManager nextCard];
+    
+    NSLog(@"Current card: %@", _currentCard);
+    
+    if(_currentCard != nil)
+    {
+        _wordLabel.text = [_currentCard objectForKey:@"name"];
+        _definitionLabel.text = [_currentCard objectForKey:@"description"];
+        
+        //Resize text to box size
+        CGRect labelRect = _definitionLabel.bounds;
+        CGFloat fontSize = 30;
+        while (fontSize > 0.0)
+        {
+            CGSize size = [_definitionLabel.text sizeWithFont:[UIFont fontWithName:@"Verdana" size:fontSize] constrainedToSize:CGSizeMake(labelRect.size.width, 10000) lineBreakMode:UILineBreakModeWordWrap];
+            
+            if (size.height <= labelRect.size.height) break;
+            
+            fontSize -= 1.0;
+        }
+        
+        //set font size
+        _definitionLabel.font = [UIFont fontWithName:@"Verdana" size:fontSize];
+        
+        _definitionLabel.alpha = 0;
+        _checkButton.enabled = NO;
+        _xButton.enabled = NO;
+        _mainButton.enabled = YES;
+        
+        _checkButton.alpha = 0;
+        _xButton.alpha = 0;
+        
+        _flipped = NO;
+    }
+    else
+    {
+        _wordLabel.text = @"";
+        _definitionLabel.text = @"";
+        _checkButton.enabled = NO;
+        _xButton.enabled = NO;
+        _mainButton.enabled = NO;
+        
+        _checkButton.alpha = 0;
+        _xButton.alpha = 0;
+        
+        _flipped = NO;
+    }
+}
+
+- (IBAction)xButtonPressed:(id)sender {
+    _currentCard = [_deckManager nextCard];
+    
+    NSLog(@"Current card: %@", _currentCard);
+    
+    if(_currentCard != nil)
+    {
+        _wordLabel.text = [_currentCard objectForKey:@"name"];
+        _definitionLabel.text = [_currentCard objectForKey:@"description"];
+        
+        //Resize text to box size
+        CGRect labelRect = _definitionLabel.bounds;
+        CGFloat fontSize = 30;
+        while (fontSize > 0.0)
+        {
+            CGSize size = [_definitionLabel.text sizeWithFont:[UIFont fontWithName:@"Verdana" size:fontSize] constrainedToSize:CGSizeMake(labelRect.size.width, 10000) lineBreakMode:UILineBreakModeWordWrap];
+            
+            if (size.height <= labelRect.size.height) break;
+            
+            fontSize -= 1.0;
+        }
+        
+        //set font size
+        _definitionLabel.font = [UIFont fontWithName:@"Verdana" size:fontSize];
+        
+        _definitionLabel.alpha = 0;
+        _checkButton.enabled = NO;
+        _xButton.enabled = NO;
+        _mainButton.enabled = YES;
+        
+        _checkButton.alpha = 0;
+        _xButton.alpha = 0;
+        
+        _flipped = NO;
+    }
+    else
+    {
+        _wordLabel.text = @"";
+        _definitionLabel.text = @"";
+        _checkButton.enabled = NO;
+        _xButton.enabled = NO;
+        _mainButton.enabled = NO;
+        
+        _checkButton.alpha = 0;
+        _xButton.alpha = 0;
+        
+        _flipped = NO;
     }
 }
 
@@ -63,5 +255,13 @@
 
 - (IBAction)revealSidebar:(id)sender {
     _revealBlock();
+}
+- (void)viewDidUnload {
+    [self setMainButton:nil];
+    [self setCheckButton:nil];
+    [self setXButton:nil];
+    [self setDefinitionLabel:nil];
+    [self setWordLabel:nil];
+    [super viewDidUnload];
 }
 @end

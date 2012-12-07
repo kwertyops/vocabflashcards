@@ -12,6 +12,7 @@
 
 @property (nonatomic) NSMutableArray *allDecks;
 @property (nonatomic) NSMutableDictionary *currentDeck;
+@property (nonatomic) NSMutableArray *cardQueue;
 @property (nonatomic) NSString *filePath;
 @property (nonatomic) NSFileManager *fileManager;
 
@@ -21,6 +22,7 @@
 -(void)removeDeck:(NSDictionary *)deck;
 
 -(NSMutableDictionary *)getCurrentDeck;
+-(NSMutableDictionary *)nextCard;
 -(NSInteger)indexForCurrentDeck;
 -(void)setCurrentDeck:(NSMutableDictionary *)currentDeck;
 

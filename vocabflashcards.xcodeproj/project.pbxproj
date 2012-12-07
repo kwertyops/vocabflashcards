@@ -7,6 +7,10 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		33168D9C1671A07700302F44 /* check.png in Resources */ = {isa = PBXBuildFile; fileRef = 33168D981671A07700302F44 /* check.png */; };
+		33168D9D1671A07700302F44 /* check@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 33168D991671A07700302F44 /* check@2x.png */; };
+		33168D9E1671A07700302F44 /* xmark.png in Resources */ = {isa = PBXBuildFile; fileRef = 33168D9A1671A07700302F44 /* xmark.png */; };
+		33168D9F1671A07700302F44 /* xmark@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 33168D9B1671A07700302F44 /* xmark@2x.png */; };
 		331D13DB167072010051A051 /* InsertCardViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 331D13DA167072010051A051 /* InsertCardViewController.m */; };
 		338548F816690A0200880741 /* SearchResultsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 338548F716690A0200880741 /* SearchResultsViewController.m */; };
 		33854913166914E100880741 /* PrettyCustomViewTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 33854901166914E100880741 /* PrettyCustomViewTableViewCell.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
@@ -59,6 +63,10 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		33168D981671A07700302F44 /* check.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = check.png; sourceTree = "<group>"; };
+		33168D991671A07700302F44 /* check@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "check@2x.png"; sourceTree = "<group>"; };
+		33168D9A1671A07700302F44 /* xmark.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = xmark.png; sourceTree = "<group>"; };
+		33168D9B1671A07700302F44 /* xmark@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "xmark@2x.png"; sourceTree = "<group>"; };
 		331D13D9167072010051A051 /* InsertCardViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = InsertCardViewController.h; sourceTree = "<group>"; };
 		331D13DA167072010051A051 /* InsertCardViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = InsertCardViewController.m; sourceTree = "<group>"; };
 		338548F616690A0200880741 /* SearchResultsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SearchResultsViewController.h; sourceTree = "<group>"; };
@@ -247,6 +255,10 @@
 				3385494E1669689100880741 /* deck_icon@2x.png */,
 				33854949166967B400880741 /* plus.png */,
 				3385494A166967B400880741 /* plus@2x.png */,
+				33168D981671A07700302F44 /* check.png */,
+				33168D991671A07700302F44 /* check@2x.png */,
+				33168D9A1671A07700302F44 /* xmark.png */,
+				33168D9B1671A07700302F44 /* xmark@2x.png */,
 				33AA5D2C166879E4001F62E3 /* Supporting Files */,
 				33AA5D34166879E4001F62E3 /* AppDelegate.h */,
 				33AA5D35166879E4001F62E3 /* AppDelegate.m */,
@@ -422,6 +434,10 @@
 				3385494C166967B500880741 /* plus@2x.png in Resources */,
 				3385494F1669689100880741 /* deck_icon.png in Resources */,
 				338549501669689100880741 /* deck_icon@2x.png in Resources */,
+				33168D9C1671A07700302F44 /* check.png in Resources */,
+				33168D9D1671A07700302F44 /* check@2x.png in Resources */,
+				33168D9E1671A07700302F44 /* xmark.png in Resources */,
+				33168D9F1671A07700302F44 /* xmark@2x.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

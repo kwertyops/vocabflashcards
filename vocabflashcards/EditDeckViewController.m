@@ -62,6 +62,8 @@
 - (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath {
     if (editingStyle == UITableViewCellEditingStyleDelete) {
         [[[_deckManager getCurrentDeck] objectForKey:@"entries"] removeObjectAtIndex:indexPath.row];
+        AppDelegate *appDelegate = [[UIApplication sharedApplication] delegate];
+        [[appDelegate deckView] reload];
         [_tableView reloadData];
     }
 }
@@ -98,5 +100,13 @@
 - (IBAction)donePressed:(id)sender
 {
     [self dismissViewControllerAnimated:YES completion:nil];
+}
+
+- (IBAction)trashPressed:(id)sender
+{
+    [self dismissViewControllerAnimated:YES completion:nil];
+    
+    [_deckManager removeDeck:[_deckManager getCurrentDeck]];
+    
 }
 @end

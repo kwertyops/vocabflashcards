@@ -84,7 +84,7 @@
         
         
         //Remove {{ * }}
-        regex = [NSRegularExpression regularExpressionWithPattern:@"\\{\\{(.*)\\}\\}" options:NSRegularExpressionCaseInsensitive error:nil];
+        regex = [NSRegularExpression regularExpressionWithPattern:@"\\{\\{(.*?)\\}\\}" options:NSRegularExpressionCaseInsensitive error:nil];
         NSString *description_temp = [regex stringByReplacingMatchesInString:description options:0 range:NSMakeRange(0, description.length) withTemplate:@""];
         
         

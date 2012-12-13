@@ -13,6 +13,7 @@
 @interface DBManager : NSObject
 
 @property (atomic) FMDatabase *db;
+@property (atomic) NSMutableDictionary *tempResults;
 
 - (void)openDatabase;
 - (void)checkForDBFile;

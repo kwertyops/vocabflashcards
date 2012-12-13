@@ -15,6 +15,7 @@
 @property (nonatomic) NSMutableArray *cardQueue;
 @property (nonatomic) NSString *filePath;
 @property (nonatomic) NSFileManager *fileManager;
+@property (nonatomic) NSInteger numWrong;
 
 -(void)loadFile;
 
@@ -24,6 +25,8 @@
 -(NSMutableDictionary *)getCurrentDeck;
 -(NSMutableDictionary *)nextCard;
 -(NSInteger)indexForCurrentDeck;
+-(void)gotOneWrong;
 -(void)setCurrentDeck:(NSMutableDictionary *)currentDeck;
+-(void)addCard:(NSDictionary *)card toDeck:(NSMutableDictionary *)deck;
 
 @end

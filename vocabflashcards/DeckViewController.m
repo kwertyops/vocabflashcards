@@ -25,6 +25,7 @@
 @synthesize xButton = _xButton;
 @synthesize wordLabel = _wordLabel;
 @synthesize definitionLabel = _definitionLabel;
+@synthesize percentageLabel = _percentageLabel;
 
 - (void)viewDidLoad
 {
@@ -43,6 +44,7 @@
         self.title = @"No Deck Selected";
         _wordLabel.text = @"Powered by Wiktionary!";
         _definitionLabel.text = @"Please forgive some broken or odd-looking definitions. We're parsing wikitext. :)";
+        _percentageLabel.text = @"";
         _checkButton.enabled = NO;
         _xButton.enabled = NO;
         _mainButton.enabled = NO;
@@ -63,18 +65,18 @@
 
 - (void)reload
 {
+    NSLog(@"Reloading");
     if([[_deckManager currentDeck] objectForKey:@"title"] != nil)
     {
         self.title = [[_deckManager currentDeck] objectForKey:@"title"];
         
         _currentCard = [_deckManager nextCard];
-        
-        NSLog(@"Current card: %@", _currentCard);
-        
+                
         if(_currentCard != nil)
         {
             _wordLabel.text = [_currentCard objectForKey:@"name"];
             _definitionLabel.text = [_currentCard objectForKey:@"description"];
+            _percentageLabel.text =  [NSString stringWithFormat:@"%@/%@", (NSNumber *)[_currentCard objectForKey:@"correct"], (NSNumber *)[_currentCard objectForKey:@"attempts"]];
             
             //Resize to text
             CGRect labelRect = _definitionLabel.bounds;            
@@ -93,6 +95,7 @@
             
              
             _definitionLabel.alpha = 0;
+            _percentageLabel.alpha = 0;
             _checkButton.enabled = NO;
             _xButton.enabled = NO;
             _mainButton.enabled = YES;
@@ -107,6 +110,7 @@
             _wordLabel.text = @"No Cards in Deck";
             _definitionLabel.text = @"Try adding some cards.";
             _definitionLabel.alpha = 1;
+            _percentageLabel.alpha = 0;
             _checkButton.enabled = NO;
             _xButton.enabled = NO;
             _mainButton.enabled = NO;
@@ -123,6 +127,7 @@
         self.title = @"No Deck Selected";
         _wordLabel.text = @"";
         _definitionLabel.text = @"";
+        _percentageLabel.text = @"";
         _checkButton.enabled = NO;
         _xButton.enabled = NO;
         _mainButton.enabled = NO;
@@ -139,6 +144,7 @@
     {
         
         _definitionLabel.alpha = 1;
+        _percentageLabel.alpha = 1;
         _mainButton.enabled = NO;
         _checkButton.alpha = 1;
         _checkButton.enabled = YES;
@@ -150,103 +156,21 @@
 }
 
 - (IBAction)checkButtonPressed:(id)sender {
-    _currentCard = [_deckManager nextCard];
+        
+    [_currentCard setValue:[NSNumber numberWithInt:[[_currentCard objectForKey:@"correct"] intValue] + 1] forKey:@"correct"];
+    [_currentCard setValue:[NSNumber numberWithInt:[[_currentCard objectForKey:@"attempts"] intValue] + 1] forKey:@"attempts"];
     
-    NSLog(@"Current card: %@", _currentCard);
+    [self reload];
     
-    if(_currentCard != nil)
-    {
-        _wordLabel.text = [_currentCard objectForKey:@"name"];
-        _definitionLabel.text = [_currentCard objectForKey:@"description"];
-        
-        //Resize text to box size
-        CGRect labelRect = _definitionLabel.bounds;
-        CGFloat fontSize = 30;
-        while (fontSize > 0.0)
-        {
-            CGSize size = [_definitionLabel.text sizeWithFont:[UIFont fontWithName:@"Verdana" size:fontSize] constrainedToSize:CGSizeMake(labelRect.size.width, 10000) lineBreakMode:UILineBreakModeWordWrap];
-            
-            if (size.height <= labelRect.size.height) break;
-            
-            fontSize -= 1.0;
-        }
-        
-        //set font size
-        _definitionLabel.font = [UIFont fontWithName:@"Verdana" size:fontSize];
-        
-        _definitionLabel.alpha = 0;
-        _checkButton.enabled = NO;
-        _xButton.enabled = NO;
-        _mainButton.enabled = YES;
-        
-        _checkButton.alpha = 0;
-        _xButton.alpha = 0;
-        
-        _flipped = NO;
-    }
-    else
-    {
-        _wordLabel.text = @"";
-        _definitionLabel.text = @"";
-        _checkButton.enabled = NO;
-        _xButton.enabled = NO;
-        _mainButton.enabled = NO;
-        
-        _checkButton.alpha = 0;
-        _xButton.alpha = 0;
-        
-        _flipped = NO;
-    }
 }
 
 - (IBAction)xButtonPressed:(id)sender {
-    _currentCard = [_deckManager nextCard];
+        
+    [_currentCard setValue:[NSNumber numberWithInt:[[_currentCard objectForKey:@"attempts"] intValue] + 1] forKey:@"attempts"];
+    [_deckManager gotOneWrong];
     
-    NSLog(@"Current card: %@", _currentCard);
+    [self reload];
     
-    if(_currentCard != nil)
-    {
-        _wordLabel.text = [_currentCard objectForKey:@"name"];
-        _definitionLabel.text = [_currentCard objectForKey:@"description"];
-        
-        //Resize text to box size
-        CGRect labelRect = _definitionLabel.bounds;
-        CGFloat fontSize = 30;
-        while (fontSize > 0.0)
-        {
-            CGSize size = [_definitionLabel.text sizeWithFont:[UIFont fontWithName:@"Verdana" size:fontSize] constrainedToSize:CGSizeMake(labelRect.size.width, 10000) lineBreakMode:UILineBreakModeWordWrap];
-            
-            if (size.height <= labelRect.size.height) break;
-            
-            fontSize -= 1.0;
-        }
-        
-        //set font size
-        _definitionLabel.font = [UIFont fontWithName:@"Verdana" size:fontSize];
-        
-        _definitionLabel.alpha = 0;
-        _checkButton.enabled = NO;
-        _xButton.enabled = NO;
-        _mainButton.enabled = YES;
-        
-        _checkButton.alpha = 0;
-        _xButton.alpha = 0;
-        
-        _flipped = NO;
-    }
-    else
-    {
-        _wordLabel.text = @"";
-        _definitionLabel.text = @"";
-        _checkButton.enabled = NO;
-        _xButton.enabled = NO;
-        _mainButton.enabled = NO;
-        
-        _checkButton.alpha = 0;
-        _xButton.alpha = 0;
-        
-        _flipped = NO;
-    }
 }
 
 - (void)setRevealBlock:(RevealBlock)revealBlock {
@@ -262,6 +186,7 @@
     [self setXButton:nil];
     [self setDefinitionLabel:nil];
     [self setWordLabel:nil];
+    [self setPercentageLabel:nil];
     [super viewDidUnload];
 }
 @end

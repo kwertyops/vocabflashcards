@@ -36,9 +36,9 @@
 	// Do any additional setup after loading the view.
     AppDelegate *appDelegate = [[UIApplication sharedApplication] delegate];
     
-    DeckManager *deckManager = [appDelegate deckManager];
+    _deckManager = [appDelegate deckManager];
     
-    _allDecks = [deckManager allDecks];
+    _allDecks = [_deckManager allDecks];
 }
 
 - (void)didReceiveMemoryWarning
@@ -77,7 +77,14 @@
 
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
+    /*
+    [_cardToInsert setValue:[NSNumber numberWithFloat:0] forKey:@"attempts"];
+    [_cardToInsert setValue:[NSNumber numberWithFloat:0] forKey:@"correct"];
+        
     [[[_allDecks objectAtIndex:indexPath.row] objectForKey:@"entries"] addObject:_cardToInsert];
+    
+    */
+    [_deckManager addCard:_cardToInsert toDeck:[_allDecks objectAtIndex:indexPath.row]];
     
     AppDelegate *appDelegate = [[UIApplication sharedApplication] delegate];
     [[appDelegate deckView] reload];

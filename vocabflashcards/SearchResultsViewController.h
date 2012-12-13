@@ -10,6 +10,7 @@
 
 @interface SearchResultsViewController : UIViewController<UITableViewDelegate>
 
+@property (weak, nonatomic) IBOutlet UITableView *tableView;
 @property (nonatomic) NSArray *resultsList;
 @property (nonatomic) NSMutableArray *resultsByType;
 

@@ -18,6 +18,7 @@
 @synthesize cardQueue = _cardQueue;
 @synthesize fileManager = _fileManager;
 @synthesize filePath = _filePath;
+@synthesize numWrong = _numWrong;
 
 -(void)loadFile
 {
@@ -35,7 +36,7 @@
         NSLog(@"Creating decks plist.");
         [self newDeck:@"Default Deck"];
         _currentDeck = [_allDecks objectAtIndex:0];
-        [[_currentDeck objectForKey:@"entries"] addObject:@{@"name":@"Test",@"description":@"test description",@"type":@"noun"}];
+        [[_currentDeck objectForKey:@"entries"] addObject:@{@"name":@"word",@"description":@"Description OMG!",@"type":@"noun"}];
         [_allDecks writeToFile:_filePath atomically: TRUE];
     }
     else
@@ -47,7 +48,7 @@
 
 -(void)writeFile
 {
-    
+    [_allDecks writeToFile:_filePath atomically:TRUE];
 }
 
 -(NSInteger)indexForCurrentDeck
@@ -71,30 +72,50 @@
 -(NSMutableDictionary *)nextCard
 {
     
+    NSLog(@"Next card");
+    
     if(_cardQueue == nil || [_cardQueue count] == 0)
     {
         [self loadCardQueue];
     }
-    else
+    else if(_numWrong == 3)
     {
-        [_cardQueue removeLastObject];
-        
-        if([_cardQueue count] == 0)
-            [self loadCardQueue];
+        [self loadCardQueue];
+        _numWrong = 0;
+    }
+    else if([_cardQueue count] == 0)
+    {
+        NSLog(@"Out of cards");
+        [self loadCardQueue];
     }
     
-    return [_cardQueue lastObject];
-    
+    NSMutableDictionary *lastCard = [_cardQueue lastObject];
+
+    [_cardQueue removeLastObject];
+
+    return lastCard;
+        
+}
+
+-(void)gotOneWrong
+{
+    _numWrong++;
 }
 
 -(void)loadCardQueue
 {
     _cardQueue = [[NSMutableArray alloc] init];
     
+    _numWrong = 0;
+    
     if([[_currentDeck objectForKey:@"entries"] count] != 0)
     {
         _cardQueue = [[NSMutableArray alloc] initWithArray:[_currentDeck objectForKey:@"entries"]];
     }
+    
+    NSSortDescriptor *descriptor = [[NSSortDescriptor alloc] initWithKey:@"correct" ascending:NO];
+    _cardQueue = [[NSMutableArray alloc] initWithArray:[_cardQueue sortedArrayUsingDescriptors:[NSArray arrayWithObjects:descriptor,nil]]];
+        
 }
 
 -(void)newDeck:(NSString *)title
@@ -106,13 +127,7 @@
     [newDeck setValue:[[NSMutableArray alloc] init] forKey:@"entries"];
     
     [_allDecks addObject:newDeck];
-    _currentDeck = newDeck;
-    
-    [self loadCardQueue];
-    
-    AppDelegate *appDelegate = [[UIApplication sharedApplication] delegate];
-    [[appDelegate deckView] reload];
-    [[appDelegate menuController] reinit];
+    [self setCurrentDeck:newDeck];
     
 }
 
@@ -121,15 +136,9 @@
     [_allDecks removeObject:deck];
     
     if([_allDecks count] > 0)
-        _currentDeck = [_allDecks objectAtIndex:0];
+        [self setCurrentDeck:[_allDecks objectAtIndex:0]];
     else
-        _currentDeck = [[NSMutableDictionary alloc] init];
-    
-    [self loadCardQueue];
-    
-    AppDelegate *appDelegate = [[UIApplication sharedApplication] delegate];
-    [[appDelegate deckView] reload];
-    [[appDelegate menuController] reinit];
+        [self setCurrentDeck:[[NSMutableDictionary alloc] init]];
     
 }
 
@@ -142,11 +151,31 @@
 {
     _currentDeck = currentDeckIn;
     
+    for(NSMutableDictionary *entry in [_currentDeck objectForKey:@"entries"])
+    {
+        [entry setValue:[NSNumber numberWithInt:0] forKey:@"attempts"];
+        [entry setValue:[NSNumber numberWithInt:0] forKey:@"correct"];
+    }
+    
     [self loadCardQueue];
-
+    
     AppDelegate *appDelegate = [[UIApplication sharedApplication] delegate];
     [[appDelegate deckView] reload];
     [[appDelegate menuController] reinit];
+    
+    [self writeFile];
+    
+}
+
+-(void)addCard:(NSDictionary *)card toDeck:(NSMutableDictionary *)deck
+{
+    
+    [card setValue:[NSNumber numberWithInt:0] forKey:@"attempts"];
+    [card setValue:[NSNumber numberWithInt:0] forKey:@"correct"];
+    
+    [[deck objectForKey:@"entries"] addObject:card];
+    
+    [self writeFile];
     
 }
 

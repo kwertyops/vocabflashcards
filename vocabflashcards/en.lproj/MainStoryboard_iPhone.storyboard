@@ -71,6 +71,13 @@
                                     <action selector="xButtonPressed:" destination="2" eventType="touchUpInside" id="qMn-Cp-Mcd"/>
                                 </connections>
                             </button>
+                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="kSd-zG-1sz">
+                                <rect key="frame" x="120" y="349" width="80" height="32"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxX="YES" flexibleMinY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="25"/>
+                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                     </view>
@@ -91,6 +98,7 @@
                         <outlet property="checkButton" destination="Mm3-s5-ERf" id="1wo-5w-HNz"/>
                         <outlet property="definitionLabel" destination="m8V-I0-Oyi" id="sMs-m3-eU4"/>
                         <outlet property="mainButton" destination="xwV-DD-jys" id="RZl-fj-5W6"/>
+                        <outlet property="percentageLabel" destination="kSd-zG-1sz" id="HKm-Mu-33p"/>
                         <outlet property="wordLabel" destination="2q8-7q-SEW" id="QjB-Lu-XiK"/>
                         <outlet property="xButton" destination="QEN-9p-nEJ" id="IBr-MG-OdO"/>
                         <segue destination="h51-2t-CYw" kind="push" identifier="SearchResultsSegue" id="N8g-Tf-GcG"/>
@@ -265,6 +273,7 @@
                     </view>
                     <navigationItem key="navigationItem" id="h8P-zZ-AcO"/>
                     <connections>
+                        <outlet property="tableView" destination="j0k-U7-fqV" id="opG-dR-oFy"/>
                         <segue destination="pdh-hA-hSY" kind="push" identifier="newCardSegue" id="1Mk-JG-PaB"/>
                     </connections>
                 </viewController>
@@ -418,6 +427,62 @@
         <image name="check@2x.png" width="50" height="50"/>
         <image name="xmark@2x.png" width="50" height="50"/>
     </resources>
+    <classes>
+        <class className="DeckViewController" superclassName="UIViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/DeckViewController.h"/>
+            <relationships>
+                <relationship kind="action" name="checkButtonPressed:"/>
+                <relationship kind="action" name="mainButtonPressed:"/>
+                <relationship kind="action" name="revealSidebar:"/>
+                <relationship kind="action" name="xButtonPressed:"/>
+                <relationship kind="outlet" name="checkButton" candidateClass="UIButton"/>
+                <relationship kind="outlet" name="definitionLabel" candidateClass="UILabel"/>
+                <relationship kind="outlet" name="mainButton" candidateClass="UIButton"/>
+                <relationship kind="outlet" name="percentageLabel" candidateClass="UILabel"/>
+                <relationship kind="outlet" name="wordLabel" candidateClass="UILabel"/>
+                <relationship kind="outlet" name="xButton" candidateClass="UIButton"/>
+            </relationships>
+        </class>
+        <class className="EditDeckViewController" superclassName="UIViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/EditDeckViewController.h"/>
+            <relationships>
+                <relationship kind="action" name="donePressed:"/>
+                <relationship kind="action" name="trashPressed:"/>
+                <relationship kind="outlet" name="navBar" candidateClass="PrettyNavigationBar"/>
+                <relationship kind="outlet" name="tableView" candidateClass="UITableView"/>
+            </relationships>
+        </class>
+        <class className="InsertCardViewController" superclassName="UIViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/InsertCardViewController.h"/>
+            <relationships>
+                <relationship kind="outlet" name="tableView" candidateClass="UITableView"/>
+            </relationships>
+        </class>
+        <class className="NewCardViewController" superclassName="UIViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/NewCardViewController.h"/>
+            <relationships>
+                <relationship kind="action" name="addCardPressed:"/>
+                <relationship kind="outlet" name="defText" candidateClass="UITextView"/>
+                <relationship kind="outlet" name="wordText" candidateClass="UITextView"/>
+            </relationships>
+        </class>
+        <class className="NewDeckViewController" superclassName="UIViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/NewDeckViewController.h"/>
+            <relationships>
+                <relationship kind="action" name="createPressed:"/>
+                <relationship kind="outlet" name="textField" candidateClass="UITextView"/>
+            </relationships>
+        </class>
+        <class className="PrettyNavigationBar" superclassName="UINavigationBar">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/PrettyNavigationBar.h"/>
+        </class>
+        <class className="SearchResultsViewController" superclassName="UIViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/SearchResultsViewController.h"/>
+            <relationships>
+                <relationship kind="outlet" name="tableView" candidateClass="UITableView"/>
+            </relationships>
+        </class>
+    </classes>
     <simulatedMetricsContainer key="defaultSimulatedMetrics">
         <simulatedStatusBarMetrics key="statusBar"/>
         <simulatedOrientationMetrics key="orientation"/>

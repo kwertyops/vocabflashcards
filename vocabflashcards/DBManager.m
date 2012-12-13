@@ -12,6 +12,7 @@
 @implementation DBManager
 
 @synthesize db = _db;
+@synthesize tempResults = _tempResults;
 
 - (void)openDatabase
 {
@@ -38,11 +39,25 @@
     FMResultSet *s = [_db executeQuery:[NSString stringWithFormat:(@"SELECT name, type, description FROM dictionary WHERE name LIKE '%@%%' ORDER BY name COLLATE NOCASE"), searchTerm]];
     
     NSMutableArray *results = [[NSMutableArray alloc] init];
+    _tempResults = [[NSMutableDictionary alloc] init];
     
     while([s next])
     {
         if(![results containsObject:[s stringForColumn:@"name"]])
             [results addObject:[s stringForColumn:@"name"]];
+        
+        NSMutableDictionary *word = [[NSMutableDictionary alloc] init];
+        [word setValue:[s stringForColumn:@"name"] forKey:@"name"];
+        [word setValue:[s stringForColumn:@"type"] forKey:@"type"];
+        [word setValue:[s stringForColumn:@"description"] forKey:@"description"];
+        
+        if([_tempResults objectForKey:[word objectForKey:@"name"]] == nil)
+        {
+            [_tempResults setValue:[[NSMutableArray alloc] init] forKey:[word objectForKey:@"name"]];
+        }
+        
+        [[_tempResults objectForKey:[word objectForKey:@"name"]] addObject:word];
+        
     }
     
     return results;
@@ -52,23 +67,29 @@
 //This is an actual search with no limit and where word type matters
 - (NSMutableArray *)searchForWord : (NSString *)searchTerm
 {
-    NSMutableArray *results = [[NSMutableArray alloc] init];
+    
+    /*
+    
+    
     
     searchTerm = [searchTerm stringByReplacingOccurrencesOfString:@"'" withString:@"''"];
     
     FMResultSet *s = [_db executeQuery:[NSString stringWithFormat:(@"SELECT name, type, description FROM dictionary WHERE name='%@' COLLATE BINARY ORDER BY name"), searchTerm]];
+    */
     
-    while([s next])
+    NSMutableArray *results = [_tempResults objectForKey:searchTerm];
+    
+    for(NSMutableDictionary *word in results)
     {
-        NSMutableDictionary *word = [[NSMutableDictionary alloc] init];
+        /*
+        //NSMutableDictionary *word = [[NSMutableDictionary alloc] init];
         [word setValue:[s stringForColumn:@"name"] forKey:@"name"];
         [word setValue:[s stringForColumn:@"type"] forKey:@"type"];
         [word setValue:[s stringForColumn:@"description"] forKey:@"description"];
+        */
         
         NSString *description = [word objectForKey:@"description"];
-        
-        NSLog(@"%@",description);
-        
+                
         //Remove leading #
         description = [description stringByReplacingOccurrencesOfString:@"# " withString:@""];
         
@@ -121,7 +142,7 @@
         
         [word setValue:description forKey:@"description"];
         
-        [results addObject:word];
+        //[results addObject:word];
     }
     
     

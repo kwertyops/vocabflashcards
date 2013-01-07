@@ -97,6 +97,7 @@
                     <connections>
                         <outlet property="checkButton" destination="Mm3-s5-ERf" id="1wo-5w-HNz"/>
                         <outlet property="definitionLabel" destination="m8V-I0-Oyi" id="sMs-m3-eU4"/>
+                        <outlet property="editButton" destination="a5B-im-sBd" id="q6e-tr-uNb"/>
                         <outlet property="mainButton" destination="xwV-DD-jys" id="RZl-fj-5W6"/>
                         <outlet property="percentageLabel" destination="kSd-zG-1sz" id="HKm-Mu-33p"/>
                         <outlet property="wordLabel" destination="2q8-7q-SEW" id="QjB-Lu-XiK"/>
@@ -427,62 +428,6 @@
         <image name="check@2x.png" width="50" height="50"/>
         <image name="xmark@2x.png" width="50" height="50"/>
     </resources>
-    <classes>
-        <class className="DeckViewController" superclassName="UIViewController">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/DeckViewController.h"/>
-            <relationships>
-                <relationship kind="action" name="checkButtonPressed:"/>
-                <relationship kind="action" name="mainButtonPressed:"/>
-                <relationship kind="action" name="revealSidebar:"/>
-                <relationship kind="action" name="xButtonPressed:"/>
-                <relationship kind="outlet" name="checkButton" candidateClass="UIButton"/>
-                <relationship kind="outlet" name="definitionLabel" candidateClass="UILabel"/>
-                <relationship kind="outlet" name="mainButton" candidateClass="UIButton"/>
-                <relationship kind="outlet" name="percentageLabel" candidateClass="UILabel"/>
-                <relationship kind="outlet" name="wordLabel" candidateClass="UILabel"/>
-                <relationship kind="outlet" name="xButton" candidateClass="UIButton"/>
-            </relationships>
-        </class>
-        <class className="EditDeckViewController" superclassName="UIViewController">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/EditDeckViewController.h"/>
-            <relationships>
-                <relationship kind="action" name="donePressed:"/>
-                <relationship kind="action" name="trashPressed:"/>
-                <relationship kind="outlet" name="navBar" candidateClass="PrettyNavigationBar"/>
-                <relationship kind="outlet" name="tableView" candidateClass="UITableView"/>
-            </relationships>
-        </class>
-        <class className="InsertCardViewController" superclassName="UIViewController">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/InsertCardViewController.h"/>
-            <relationships>
-                <relationship kind="outlet" name="tableView" candidateClass="UITableView"/>
-            </relationships>
-        </class>
-        <class className="NewCardViewController" superclassName="UIViewController">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/NewCardViewController.h"/>
-            <relationships>
-                <relationship kind="action" name="addCardPressed:"/>
-                <relationship kind="outlet" name="defText" candidateClass="UITextView"/>
-                <relationship kind="outlet" name="wordText" candidateClass="UITextView"/>
-            </relationships>
-        </class>
-        <class className="NewDeckViewController" superclassName="UIViewController">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/NewDeckViewController.h"/>
-            <relationships>
-                <relationship kind="action" name="createPressed:"/>
-                <relationship kind="outlet" name="textField" candidateClass="UITextView"/>
-            </relationships>
-        </class>
-        <class className="PrettyNavigationBar" superclassName="UINavigationBar">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/PrettyNavigationBar.h"/>
-        </class>
-        <class className="SearchResultsViewController" superclassName="UIViewController">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/SearchResultsViewController.h"/>
-            <relationships>
-                <relationship kind="outlet" name="tableView" candidateClass="UITableView"/>
-            </relationships>
-        </class>
-    </classes>
     <simulatedMetricsContainer key="defaultSimulatedMetrics">
         <simulatedStatusBarMetrics key="statusBar"/>
         <simulatedOrientationMetrics key="orientation"/>

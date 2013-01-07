@@ -26,6 +26,7 @@
 @synthesize wordLabel = _wordLabel;
 @synthesize definitionLabel = _definitionLabel;
 @synthesize percentageLabel = _percentageLabel;
+@synthesize editButton = _editButton;
 
 - (void)viewDidLoad
 {
@@ -48,6 +49,7 @@
         _checkButton.enabled = NO;
         _xButton.enabled = NO;
         _mainButton.enabled = NO;
+        _editButton.enabled = NO;
         
         _checkButton.alpha = 0;
         _xButton.alpha = 0;
@@ -65,7 +67,6 @@
 
 - (void)reload
 {
-    NSLog(@"Reloading");
     if([[_deckManager currentDeck] objectForKey:@"title"] != nil)
     {
         self.title = [[_deckManager currentDeck] objectForKey:@"title"];
@@ -99,6 +100,7 @@
             _checkButton.enabled = NO;
             _xButton.enabled = NO;
             _mainButton.enabled = YES;
+            _editButton.enabled = YES;
             
             _checkButton.alpha = 0;
             _xButton.alpha = 0;
@@ -114,6 +116,8 @@
             _checkButton.enabled = NO;
             _xButton.enabled = NO;
             _mainButton.enabled = NO;
+            _editButton.enabled = YES;
+
             
             _checkButton.alpha = 0;
             _xButton.alpha = 0;
@@ -131,6 +135,7 @@
         _checkButton.enabled = NO;
         _xButton.enabled = NO;
         _mainButton.enabled = NO;
+        _editButton.enabled = NO;
         
         _checkButton.alpha = 0;
         _xButton.alpha = 0;
@@ -187,6 +192,7 @@
     [self setDefinitionLabel:nil];
     [self setWordLabel:nil];
     [self setPercentageLabel:nil];
+    [self setEditButton:nil];
     [super viewDidUnload];
 }
 @end

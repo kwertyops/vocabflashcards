@@ -42,7 +42,6 @@
     else
     {
         self.navBar.topItem.title = @"No Deck";
-
     }
     
     [_tableView reloadData];
@@ -104,9 +103,22 @@
 
 - (IBAction)trashPressed:(id)sender
 {
-    [self dismissViewControllerAnimated:YES completion:nil];
     
-    [_deckManager removeDeck:[_deckManager getCurrentDeck]];
+    UIAlertView *updateAlert = [[UIAlertView alloc] initWithTitle: @"Delete Deck" message: @"Do you really want to delete this deck?" delegate: self cancelButtonTitle: @"Yes"  otherButtonTitles:@"No",nil];
+    
+    [updateAlert show];
     
 }
+
+- (void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex
+{
+    if(buttonIndex==0)
+    {
+        [self dismissViewControllerAnimated:YES completion:nil];
+        
+        [_deckManager removeDeck:[_deckManager getCurrentDeck]];
+    }
+    
+}
+
 @end

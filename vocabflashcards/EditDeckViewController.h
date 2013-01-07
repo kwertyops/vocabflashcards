@@ -10,7 +10,7 @@
 #import "DeckManager.h"
 #import "PrettyNavigationBar.h"
 
-@interface EditDeckViewController : UIViewController<UITableViewDataSource, UITableViewDelegate>
+@interface EditDeckViewController : UIViewController<UITableViewDataSource, UITableViewDelegate, UIActionSheetDelegate>
 
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
 @property (weak, nonatomic) IBOutlet PrettyNavigationBar *navBar;

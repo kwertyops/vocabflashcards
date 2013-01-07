@@ -130,6 +130,10 @@
         description = [description stringByReplacingOccurrencesOfString:@"[[" withString:@""];
         description = [description stringByReplacingOccurrencesOfString:@"]]" withString:@""];
         
+        //Remove <ref> and </ref>
+        description = [description stringByReplacingOccurrencesOfString:@"<ref>" withString:@""];
+        description = [description stringByReplacingOccurrencesOfString:@"</ref>" withString:@""];
+        
         //Remove leading whitespace
         while([[description substringToIndex:1] isEqualToString:@" "])
         {

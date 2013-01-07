@@ -25,6 +25,7 @@ typedef void (^RevealBlock)();
 @property (weak, nonatomic) IBOutlet UILabel *definitionLabel;
 @property (weak, nonatomic) IBOutlet UILabel *percentageLabel;
 @property (weak, nonatomic) IBOutlet UILabel *wordLabel;
+@property (weak, nonatomic) IBOutlet UIBarButtonItem *editButton;
 
 @property (nonatomic) BOOL flipped;
 

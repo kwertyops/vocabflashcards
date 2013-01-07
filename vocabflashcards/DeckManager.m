@@ -34,9 +34,21 @@
     if (![_fileManager fileExistsAtPath:_filePath])
     {
         NSLog(@"Creating decks plist.");
-        [self newDeck:@"Default Deck"];
-        _currentDeck = [_allDecks objectAtIndex:0];
-        [[_currentDeck objectForKey:@"entries"] addObject:@{@"name":@"word",@"description":@"Description OMG!",@"type":@"noun"}];
+        //[self newDeck:@"Default Deck"];
+        //_currentDeck = [_allDecks objectAtIndex:0];
+        //[_allDecks addObject:@{@"title":@"Default Deck", @"entries": @[@{@"name":@"word",@"description":@"Description OMG!",@"type":@"noun",@"correct":[NSNumber numberWithInt:0],@"attempts":[NSNumber numberWithInt:0]}]}];
+        
+        NSMutableDictionary *newDeck = [[NSMutableDictionary alloc] init];
+        
+        [newDeck setValue:@"Default Deck" forKey:@"title"];
+        [newDeck setValue:[[NSMutableArray alloc] init] forKey:@"entries"];
+        
+        [[newDeck objectForKey:@"entries"] addObject:[[NSMutableDictionary alloc] initWithDictionary:@{@"name":@"Wiktionary",@"description":@"A collaborative project run by the Wikimedia Foundation to produce a free and complete dictionary (lexicon and thesaurus therein) in every language.",@"type":@"noun",@"correct":[NSNumber numberWithInt:0],@"attempts":[NSNumber numberWithInt:0]}]];
+        [[newDeck objectForKey:@"entries"] addObject:[[NSMutableDictionary alloc] initWithDictionary:@{@"name":@"flashcard",@"description":@"A card used to aid rote memorization. One side of the card contains data of one kind, or a question, and the other side contains the associated response which one wants to memorize.",@"type":@"noun",@"correct":[NSNumber numberWithInt:0],@"attempts":[NSNumber numberWithInt:0]}]];
+        [[newDeck objectForKey:@"entries"] addObject:[[NSMutableDictionary alloc] initWithDictionary:@{@"name":@"word",@"description":@"A distinct unit of language (sounds in speech or written letters) with a particular meaning, composed of one or more morphemes, and also of one or more phonemes that determine its sound pattern.",@"type":@"noun",@"correct":[NSNumber numberWithInt:0],@"attempts":[NSNumber numberWithInt:0]}]];
+        
+        [_allDecks addObject:newDeck];
+        
         [_allDecks writeToFile:_filePath atomically: TRUE];
     }
     else
@@ -71,9 +83,7 @@
 
 -(NSMutableDictionary *)nextCard
 {
-    
-    NSLog(@"Next card");
-    
+        
     if(_cardQueue == nil || [_cardQueue count] == 0)
     {
         [self loadCardQueue];
